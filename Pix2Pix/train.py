@@ -54,6 +54,7 @@ class Trainer:
         for img in imgs_temp:
             # imgs_A存储的是256*512的前一半图
             # imgs_B存储的是256*512的后一半图
+            # 图的形状好像没有想清楚，还要仔细想想
             imgs_A.append(img[:, :self.H])
             imgs_B.append(img[:, self.H:])
 
@@ -122,6 +123,7 @@ class Trainer:
 
                 # PatchGAN
                 # 根据PatchGAN论文中的架构来构建Y标签，创建y_valid和y_fake标签进行训练
+                # 形状(1,16,16,1)
                 y_valid = np.ones((1,) + (int(self.W / 2 ** 4), int(self.W / 2 ** 4), 1))
                 y_fake = np.zeros((1,) + (int(self.W / 2 ** 4), int(self.W / 2 ** 4), 1))
                 # 根据batch_B得输入使用生成器来生成FakeA图像
